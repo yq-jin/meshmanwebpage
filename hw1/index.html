@@ -1,0 +1,220 @@
+<html>
+	<head>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+		<style>
+			h1 {
+				text-align: center;
+			}
+
+			.container {
+				margin: 0 auto;
+				padding: 60px 20%;
+			}
+
+			figure {
+				text-align: center;
+			}
+
+			img {
+				display: inline-block;
+			}
+
+			body {
+				font-family: 'Inter', sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		<h1>CS184/284A Spring 2025 Homework 1 Write-Up</h1>
+		<div style="text-align: center;">Names: Catherine Jin</div>
+
+		<br>
+
+		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-moop/">cs184.eecs.berkeley.edu/sp25</a>
+		
+		<br>
+
+		Link to GitHub repository: <a href="https://github.com/cal-cs184-student/sp25-hw1-boop">cs184.eecs.berkeley.edu/sp25</a>
+
+		<!-- <figure>
+			<img src="lion.jpg" alt="Lion" style="width:50%"/>
+			<figcaption>You can add images with captions!</figcaption>
+		</figure> -->
+
+		<!--
+		We've already added one heading per task, to make your write-up as navigable when grading. Please fit your write-up within these sections!
+		-->
+
+		<h2>Overview</h2>
+		In this homework, I started with simple rasterization, using triangles to show the changes between normal rasterization and supersampling, which mediates jaggies. Then, I created a cute little robot man by transforming shapes! With translation, scaling, and rotation, anything is possible! Then moving onto colors... Previously everything was just one color, whether it be the triangles or the robot man. How boring! Now, with barycentric coordinates, I was able to complete a perfectly blended color wheel that shows a gradual gradient throughout. Lastly, we worked with textures. Adding pixel sampling and level sampling with mipmaps to see our pngs in all different forms.
+
+		<h2>Task 1: Drawing Single-Color Triangles</h2>
+		I rasterized the triangles by first calculating the bounds based on the parameters, getting a min and max bound for each x and y. When iterating through the pixels in the bounds, I first set the center at (.5,.5) as the instructions say. Then, with edge functions, I can check if each sample point is in the triangle formed by the three edges. If all three functions are positive or negative for a point, that means it is in the triangle, else, it is not. Lastly, I just use the fill_pixel() function to fill it in with the specified color if it is in bound.
+
+		My algorithm is no worse than one that checks each sample within the bounding box of the triangle. First, I create the bounding box before running the double for loop, which iterates each sample in the bounding box once. So this algorithm checks each sample within the bounding box once, and no more than that.
+
+		<p>Here is a screenshot of test4.svg, with the pixel inspector on the edge of the red triangle.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="task1.png" width="400px"/>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<!-- <p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="lion.jpg" width="400px"/>
+				  <figcaption>Caption goes here.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="lion.jpg" width="400px"/>
+				  <figcaption>Caption goes here.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="lion.jpg" width="400px"/>
+				  <figcaption>Caption goes here.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="lion.jpg" width="400px"/>
+				  <figcaption>Caption goes here.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div> -->
+		
+		<h2>Task 2: Antialiasing by Supersampling</h2>
+		Supersampling is useful because it takes multiple samples within each pixel and average them in order to antialias. My supersampling algorithm divides each pixel into sample_rate different subpixel locations, then tests each location against the triangle. I use sqrt_rate to compute the number of samples per pixel, then essentially does the same rasterizing triangle method as before in task 1. Except just filling the pixel directly with fill_pixel, I store the samples in the sample buffer then selects a color accordingly for the pixel.
+
+		<p>Showing png screenshots of basic/test4.svg with the default viewing parameters and sample rates 1, 4, and 16 to compare them side-by-side. With higher sample rates, the corner of the triangle gets smoother and smoother and more blended.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="task2.1.png" width="400px"/>
+				  <figcaption>Sample rate: 1</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="task2.4.png" width="400px"/>
+				  <figcaption>Sample rate: 4</figcaption>
+				</td>
+				<td style="text-align: center;">
+					<img src="task2.16.png" width="400px"/>
+					<figcaption>Sample rate: 16</figcaption>
+				  </td>
+			  </tr>
+			</table>
+		</div>
+
+		<h2>Task 3: Transforms</h2>
+		I tried to make him wave with his leg up! I did so with rotations and translations.
+
+		<figure>
+			<img src="task3.png" alt="robot:D" style="width:50%"/>
+			<figcaption>My cute robot!</figcaption>
+		</figure> 
+
+
+		<h2>Task 4: Barycentric coordinates</h2>
+		Barycentric coordinates can be represented as gravitational pulls. Think of it this way. A triangle of three planets, each have a different color and a different gravitational pull strength (the weight in the barycentric equation). The closer a pixel is to a point, the more of the color of the point it adopts. So the closest pixel to one of the three points (planets) that form a triangle would be the exact color of the point. The next one gains a bit of the color of the other point it's moving towards, and so on. Instead of doing this linearly though, in this part of the homework I chose to do barycentric coordinates with areas instead, since we are working with a 2D shape. It follows the exact same concepts explained, just the smaller the area is between the pixel and the point, the more of that color it contains.
+
+		<figure>
+			<img src="task4.png" alt="robot:D" style="width:50%"/>
+			<figcaption>test7.svg!!</figcaption>
+		</figure> 
+
+		<figure>
+			<img src="tri.jpeg" alt="robot:D" style="width:50%"/>
+			<figcaption>Triangle picture for explanation</figcaption>
+		</figure> 
+
+		<h2>Task 5: "Pixel sampling" for texture mapping</h2>
+		Pixel sampling is essentially choosing certain pixels in order to represent a photo at a lower resolution. What we do with it is choose which subset of pixels to preserve to preserve the original image as much as possible. The nearest neighbor sampling method chooses the closest discrete texture value for each pixel and directly returns it. It results in a more pixelated result. I did this by simply retrieving the nearest texel color from the mipmap and returning that. In bilinear filtering, I retrieve the four surrounding texels for each texel we are trying to sample. Then I interpolate in both the x and y direction in order to find an average of the nearest four neighbors, and return that as the color of the texel. This creates a more smooth result, as we are taking the average and the textures and colors are more blended.
+
+		<p>Here I have four png screenshots using nearest sampling at 1 sample per pixel, nearest sampling at 16 samples per pixel, bilinear sampling at 1 sample per pixel, and bilinear sampling at 16 samples per pixel.	I chose the location of the white line, where the contrast shows the most between the different sampling.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="task51.png" width="400px"/>
+				  <figcaption>Nearest sampling at 1 sample per pixel.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="task52.png" width="400px"/>
+				  <figcaption>Nearest sampling at 16 samples per pixel.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="task53.png" width="400px"/>
+				  <figcaption>Bilinear sampling at 1 sample per pixel.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="task54.png" width="400px"/>
+				  <figcaption>Bilinear sampling at 16 samples per pixel.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<p>The bilinear sampling, as expected, has a more blended texture, whereas the nearest neighbor sampling has a very pixelated texture. Bilinear works much better in the area that I zoomed in on since it has a very high contrast between the white latitude line, and the land around it. So when sampling the nearest pixel, if it happens to sample the land instead of the other parts of the white line, then that pixel would be land colored instead of white, losing a part of the line.</p>
+
+
+		<h2>Task 6: "Level Sampling" with mipmaps for texture mapping</h2>
+		Level sampling includes zero, nearest, and linear. Where L_ZERO always samples from the highest resolution, L_NEAREST calculates a mipmap level based on the textures rate of change and samples from the closest already computed level. Then L_LINEAR performs linear interpolation between its two nearest levels it has access to for a smoothest transition of them all. I implemented these methods in Color Texture::sample where based on the different lsm, I wrote each sampling algorithm differently.
+
+		First for pixel sampling, nearest is speedy for lookup while bilinear is slower for lookup since it looks at more samples. They both use low memory. And nearest has bad antialiasing power while bilinear has better antialiasing power. Level sampling for L_ZERO is fast and uses a lot of memory, but the antialiasing is not good and has jaggies. For L_NEAREST and L_LINEAR are pretty similar, both a bit slower than L_ZERO and uses less memory. L_LINEAR creates the smoothest results with L_NEAREST in close second. Lastly, the number of samples per pixel is obviously faster when less samples are taken per pixel, and also lower in memory, but creates jaggies. The more samples, the slower, and higher memory usage, but better antialiasing power. I noticed my computer lagging sometimes when I tried to take more numbers of samples per pixel, meaning that is the most memory usage heavy out of all the methods.
+
+		<p>I found this png myself from a website my friend showed me, with high quality graphics to choose from. Below are the four versions of the image specified on the spec.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="1.png" width="400px"/>
+				  <figcaption>L_ZERO and P_NEAREST</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="2.png" width="400px"/>
+				  <figcaption>L_ZERO and P_LINEAR</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="3.png" width="400px"/>
+				  <figcaption>L_NEAREST and P_NEAREST</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="4.png" width="400px"/>
+				  <figcaption>L_NEAREST and P_LINEAR</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+
+<!-- 
+		<h2>(Optional) Task 7: Extra Credit - Draw Something Creative!</h2>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. -->
+
+		<!-- <h2>Additional Notes (please remove)</h2>
+		<ul>
+			<li>You can also add code if you'd like as so: <code>code code code</code></li>
+			<li>If you'd like to add math equations, 
+				<ul>
+					<li>You can write inline equations like so: \( a^2 + b^2 = c^2 \)</li>
+					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
+				</ul>
+			</li>
+		</ul> -->
+		</div>
+	</body>
+</html>
