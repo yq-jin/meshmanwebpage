@@ -33,7 +33,7 @@
 		<br>
 		Link to webpage: <a href="https://yq-jin.github.io/meshmanwebpage/">https://yq-jin.github.io/meshmanwebpage/</a>
 		<br>
-		Link to Proposal: <a href="https://yq-jin.github.io/meshmanwebpage/">https://yq-jin.github.io/meshmanwebpage/</a>
+		Link to Proposal: <a href="https://yq-jin.github.io/meshmanwebpage/proposal/proposal.html">https://yq-jin.github.io/meshmanwebpage/proposal/proposal.html</a>
 
 		<!-- <figure>
 			<img src="lion.jpg" alt="Lion" style="width:50%"/>
@@ -88,10 +88,13 @@
 		</div> -->
 		
 		<h2>Goals and Deliverables</h2>
-		We plan to deliver an interactive UI with moveable joints and limbs that correspond to a render of a generated, regularized 3D mesh of the stickman. This includes a basic UI for users to move the 2D model, a lit render of a mesh, and mesh updates when the stickman is moved by the user.
-		With extra time, we hope to deliver an environment for the 3D mesh render for background and vibes, and textures to the 3D model. We hope to give the stickman more personality. As a long shot, we may try to embed the UI in a website rather than running it locally.
-		To evaluate the quality and performance of our system, we want to focus heavily on the responsiveness of the rendering with UI input. In particular, we will measure the time it takes for both parts of the equation: how long it takes for the mesh generation / regularization and how long it takes to render.
-		For our demo, we use the interactive UI to manipulate the 2D stickman and drag it around into different positions, which will then transform into a 3D character with mesh generation. We will create images by visualizing the 3D mesh from the same angle as the 2D image with a basic lighting source.
+		<p>We plan to deliver an interactive UI with moveable joints and limbs that correspond to a render of a generated, regularized 3D mesh of the stickman. This includes a basic UI for users to move the 2D model, a lit render of a mesh, and mesh updates when the stickman is moved by the user.</p>
+
+		<p>With extra time, we hope to deliver an environment for the 3D mesh render for background and vibes, and textures to the 3D model. We hope to give the stickman more personality. As a long shot, we may try to embed the UI in a website rather than running it locally.</p>
+
+		<p>To evaluate the quality and performance of our system, we want to focus heavily on the responsiveness of the rendering with UI input. In particular, we will measure the time it takes for both parts of the equation: how long it takes for the mesh generation / regularization and how long it takes to render.</p>
+
+		<p>For our demo, we use the interactive UI to manipulate the 2D stickman and drag it around into different positions, which will then transform into a 3D character with mesh generation. We will create images by visualizing the 3D mesh from the same angle as the 2D image with a basic lighting source.</p>
 
 		<!-- <p>Showing png screenshots of basic/test4.svg with the default viewing parameters and sample rates 1, 4, and 16 to compare them side-by-side. With higher sample rates, the corner of the triangle gets smoother and smoother and more blended.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
@@ -116,37 +119,41 @@
 		<h2>Schedule</h2>
 
 		<figure>
-			<img src="meshmansched.png" alt="schedule:D" style="width:50%"/>
+			<img src="meshmansched.png" alt="schedule:D" style="width:70%"/>
 			<!-- <figcaption>My robot!</figcaption> -->
 		</figure> 
 
 
 		<h2>Resources</h2>
 		Among other resources, we will use:
-		Lecture slides
-		Lecture 5: texture mapping
-		Lecture 8: mesh representation and geometry processing (subdivision, regularization)
-		Lecture 16: camera and lenses (DOF)
-		Skeletal Subspace Deformation
-		Using a skeleton to rig how the mesh moves and also creates displacement maps for smoother joints
-		https://web.cecs.pdx.edu/~fliu/papers/eg2003.pdf
-		Medial Axis Transform
-		Using a skeleton, expand laterally to create volume
-		https://3d.bk.tudelft.nl/courses/backup/geo1015/2018/data/geo1015_09.pdf
-		Keenan Crane Website
-		Personal computers/instructional accounts for compute
-		Blender/Unity/CS 184 3D renderer
 
-<!-- 
-		<figure>
-			<img src="task4.png" alt="robot:D" style="width:50%"/>
-			<figcaption>test7.svg!!</figcaption>
-		</figure> 
+		<p>Lecture Slides</p>
+		<ul>
+			<li>Lecture 5: texture mapping</li>
+			<li>Lecture 8: mesh representation and geometry processing (subdivision, regularization)</li>
+			<li>Lecture 16: camera and lenses (DOF)</li>
+		</ul>
 
-		<figure>
-			<img src="tri.jpeg" alt="robot:D" style="width:50%"/>
-			<figcaption>Triangle picture for explanation</figcaption>
-		</figure>  -->
+		<p>Skeletal Subspace Deformation</p>
+		<ul>
+			<li>Using a skeleton to rig how the mesh moves and also creates displacement maps for smoother joints</li>
+			<li>https://web.cecs.pdx.edu/~fliu/papers/eg2003.pdf</li>
+		</ul>
+		
+		
+		<p>Medial Axis Transform</p>
+		<ul>
+			<li>Using a skeleton, expand laterally to create volume</li>
+			<li>https://3d.bk.tudelft.nl/courses/backup/geo1015/2018/data/geo1015_09.pdf</li>
+		</ul>
+		
+		<p>Additional Resources</p>
+		<ul>
+			<li>Keenan Crane Website</li>
+			<li>Personal computers/instructional accounts for compute</li>
+			<li>Blender / Unity / CS 184 3D renderer</li>
+			<li>Github / Unity Version Control</li>
+		</ul>
 
 
 		</div>
