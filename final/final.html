@@ -47,7 +47,7 @@
 		-->
 
 		<h2>Abstract</h2>
-		<p>MeshMan is an interactive system for manipulating 3D humanoid meshes through an intuitive stick figure interface. The project combines 2D controls with 3D mesh generation and manipulation, allowing users to pose and deform humanoid characters by dragging joint points. Using Unity's rendering capabilities, the system provides real-time feedback as users modify the stick figure, with corresponding updates to the 3D mesh representation.</p>
+		<p>MeshMan is an interactive system designed to make 3D character posing and deformation more intuitive by allowing users to manipulate a simple 2D stick figure interface. The core idea behind the project is to bridge the gap between simple, user-friendly controls and the complexity of 3D mesh manipulation. Users can click and drag joints on the stick figure to reposition limbs and create poses, with all changes reflected in real time on a corresponding 3D humanoid mesh. This makes MeshMan an accessible and responsive tool for users interested in character animation, posing, or mesh editing. The system is built in Unity and takes advantage of Unity's rendering engine and real-time capabilities. And, we implemented a clear separation between the 2D control layer and the 3D representation to keep the architecture modular and easy to maintain. At the core of the 3D mesh manipulation is vertex-level control, which allows us to precisely change parts of the mesh based on the position of joints and limbs. Additionally, we use mesh combination techniques to ensure that the final character model can be rendered efficiently, even as it is being dynamically updated.</p>
 
 		<h2>Technical Approach</h2>
 		<h3>Core Architecture</h3>
