@@ -45,49 +45,63 @@
 		-->
 
 		<h2>Abstract</h2>
-		A paragraph summary of the entire project.
+		<p>MeshMan is an interactive system for manipulating 3D humanoid meshes through an intuitive stick figure interface. The project combines 2D controls with 3D mesh generation and manipulation, allowing users to pose and deform humanoid characters by dragging joint points. Using Unity's rendering capabilities, the system provides real-time feedback as users modify the stick figure, with corresponding updates to the 3D mesh representation.</p>
 
 		<h2>Technical Approach</h2>
-		A 1-2 page summary of your technical approach, techniques used, algorithms implemented, etc. (use references to papers or other resources for further detail). Highlight how your approach varied from the references used (did you implement a subset, or did you change or enhance anything), the unique decisions you made and why.
-        A description of problems encountered and how you tackled them.
-        A description of lessons learned.
+		<h3>Core Architecture</h3>
+		<ul>
+			<li>Unity-based implementation with C# scripting</li>
+			<li>Stick figure representation with joints and limbs for intuitive posing</li>
+			<li>Real-time mesh generation and manipulation based on stick figure positions</li>
+			<li>Dual-view system: 2D draggable interface and 3D mesh representation</li>
+		</ul>
 
-		<!-- <p>Here is a screenshot of test4.svg, with the pixel inspector on the edge of the red triangle.</p>
-		<div style="display: flex; flex-direction: column; align-items: center;">
-			<table style="width: 100%; text-align: center; border-collapse: collapse;">
-			  <tr>
-				<td style="text-align: center;">
-				  <img src="task1.png" width="400px"/>
-				</td>
-			  </tr>
-			</table>
-		</div> -->
+		<h3>Key Components</h3>
+		<ul>
+			<li><strong>StickFigureDragManager:</strong> Manages the 2D stick figure interface
+				<ul>
+					<li>Handles input detection and dragging operations</li>
+					<li>Constrains joint movement within reasonable limits</li>
+					<li>Updates limb positions and orientations in real-time</li>
+				</ul>
+			</li>
+			<li><strong>Figure3DView:</strong> Generates 3D mesh representation of the stick figure
+				<ul>
+					<li>Creates joint spheres and limb cylinders with appropriate dimensions</li>
+					<li>Combines meshes for efficient rendering</li>
+					<li>Updates mesh position and orientation based on stick figure changes</li>
+				</ul>
+			</li>
+			<li><strong>MeshManipulator:</strong> Handles direct mesh vertex manipulation
+				<ul>
+					<li>Provides methods to move and transform body parts</li>
+					<li>Caches and clones meshes for modification</li>
+					<li>Recalculates normals and bounds after manipulation</li>
+				</ul>
+			</li>
+			<li><strong>MeshUtils:</strong> Utility functions for mesh generation and manipulation
+				<ul>
+					<li>Generates primitive shapes (spheres, cylinders)</li>
+					<li>Provides helper methods for mesh operations</li>
+				</ul>
+			</li>
+		</ul>
 
-		<!-- <p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
-		<div style="display: flex; flex-direction: column; align-items: center;">
-			<table style="width: 100%; text-align: center; border-collapse: collapse;">
-			  <tr>
-				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-			  </tr>
-			  <tr>
-				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-			  </tr>
-			</table>
-		</div> -->
+		<h3>Implementation Challenges</h3>
+		<ul>
+			<li>Maintaining correct joint-limb relationships during manipulation</li>
+			<li>Ensuring smooth real-time updates of 3D mesh based on 2D controls</li>
+			<li>Implementing efficient mesh generation and combination</li>
+			<li>Proper handling of mesh transformations while preserving shape integrity</li>
+		</ul>
+
+		<h3>Technical Decisions</h3>
+		<ul>
+			<li>Using Unity's Input System for robust input handling</li>
+			<li>Separating 2D control layer from 3D representation for cleaner architecture</li>
+			<li>Implementing mesh manipulation at vertex level for precise control</li>
+			<li>Using combined meshes for efficient rendering</li>
+		</ul>
 		
 		<h2>Results and Deliverables</h2>
 		Your final images, animations, video of your system (whichever is relevant). You can include results that you think show off what you built but that you did not have time to go over on presentation day.
