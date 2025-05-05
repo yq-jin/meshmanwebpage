@@ -93,12 +93,7 @@
 		<p>While working on this project, we ran into several challenges that pushed us to think critically about our implementation. One major issue was maintaining the correct relationships between joints and limbs during manipulations. We would have iterations of the meshman where the limbs would detach from where the body when they should be attached. We also had to ensure that updates to the 3D mesh happened smoothly in real time based on 2D user input, just like how we learned in class that VR and AR systems have to focus a lot on making sure there is no lag. We found the user experience to be much worse when there is lag between the generations. We implemented dictionaries for search instead of for loops to make the process faster, reducing visual lag for the user. Generating and combining meshes efficiently without slowing things down was another hurdle, and we had to be careful when applying transformations to the mesh to make sure we didn't distort its shape.</p>
 
 		<h3>Technical Decisions</h3>
-		<ul>
-			<li>Using Unity's Input System for robust input handling</li>
-			<li>Separating 2D control layer from 3D representation for cleaner architecture</li>
-			<li>Implementing mesh manipulation at vertex level for precise control</li>
-			<li>Using combined meshes for efficient rendering</li>
-		</ul>
+		<p>As we developed the project, we made several technical decisions to improve both performance and maintainability. We chose Unity as the basis for our project for more robust and flexible input handling, which made it easier to manage user interactions. Since it has a built-in developer space for meshes. To keep the project more organized, we separated the 2D control layer from the 3D model representation, allowing us to build a cleaner and more modular architecture. For finer control over the visuals, we implemented mesh manipulation at the vertex level, which gave us more precision when adjusting shapes. Finally, we combined meshes where possible to optimize rendering and keep the performance smooth.</p>>
 		
 		<h2>Results and Deliverables</h2>
 		Your final images, animations, video of your system (whichever is relevant). You can include results that you think show off what you built but that you did not have time to go over on presentation day.
