@@ -70,15 +70,8 @@
 			<li><strong>Figure3DView:</strong> Generates 3D mesh representation of the stick figure
 				<ul>
 					<li>Creates joint spheres and limb cylinders with appropriate dimensions</li>
-					<li>Combines meshes for efficient rendering</li>
+					<li>Combines meshes by finding matching vertices for adjacent limbs & joints</li>
 					<li>Updates mesh position and orientation based on stick figure changes</li>
-				</ul>
-			</li>
-			<li><strong>MeshManipulator:</strong> Handles direct mesh vertex manipulation
-				<ul>
-					<li>Provides methods to move and transform body parts</li>
-					<li>Caches and clones meshes for modification</li>
-					<li>Recalculates normals and bounds after manipulation</li>
 				</ul>
 			</li>
 			<li><strong>MeshUtils:</strong> Utility functions for mesh generation and manipulation
@@ -90,10 +83,10 @@
 		</ul>
 
 		<h3>Implementation Challenges</h3>
-		<p>While working on this project, we ran into several challenges that pushed us to think critically about our implementation. One major issue was maintaining the correct relationships between joints and limbs during manipulations. We would have iterations of the meshman where the limbs would detach from where the body when they should be attached. We also had to ensure that updates to the 3D mesh happened smoothly in real time based on 2D user input, just like how we learned in class that VR and AR systems have to focus a lot on making sure there is no lag. We found the user experience to be much worse when there is lag between the generations. We implemented dictionaries for search instead of for loops to make the process faster, reducing visual lag for the user. Generating and combining meshes efficiently without slowing things down was another hurdle, and we had to be careful when applying transformations to the mesh to make sure we didn't distort its shape. Another issue we've been running into during development is related to the winding order of triangles in our mesh, which has been causing unexpected visual artifacts such as the meshman showing inverted colors on parts of the body. We spent a while with this technical challenge and later fixed it by syncing the winding order with the one of the Unity engine - clockwise by default. Lastly, in the final stages of the project, we wanted to make the background of the scene more visually appealing. So, we took to blender to create a .fpx background for the stickman to exist in to make the project more user friendly!</p>
+		<p>While working on this project, we ran into several challenges that pushed us to think critically about our implementation. One major issue was maintaining the correct relationships between joints and limbs during manipulations. We would have iterations of the meshman where the limbs would detach from where the body when they should be attached. We also had to ensure that updates to the 3D mesh happened smoothly in real time based on 2D user input, just like how we learned in class that VR and AR systems have to focus a lot on making sure there is no lag. We found the user experience to be much worse when there is lag between the generations. We implemented dictionaries for search instead of for loops to make the process faster, reducing visual lag for the user. Generating and combining meshes efficiently without slowing things down was another hurdle, and we had to be careful when applying transformations to the mesh to make sure we didn't distort its shape. Another issue we've been running into during development is related to the winding order of triangles in our mesh, which has been causing unexpected visual artifacts such as the meshman showing inverted colors on parts of the body. Given more time, we would further investigate this issue with debugging the norms. Lastly, in the final stages of the project, we wanted to make the background of the scene more visually appealing. So, we took to blender to create a .fpx background for the stickman to exist in to make the project more user friendly!</p>
 
 		<h3>Technical Decisions</h3>
-		<p>As we developed the project, we made several technical decisions to improve both performance and maintainability. We chose Unity as the basis for our project for more robust and flexible input handling, which made it easier to manage user interactions. Since it has a built-in developer space for meshes. To keep the project more organized, we separated the 2D control layer from the 3D model representation, allowing us to build a cleaner and more modular architecture. For finer control over the visuals, we implemented mesh manipulation at the vertex level, which gave us more precision when adjusting shapes. Finally, we combined meshes where possible to optimize rendering and keep the performance smooth.</p>
+		<p>As we developed the project, we made several technical decisions to improve both performance and maintainability. We chose Unity as the basis for our project for more robust and flexible input handling, which made it easier to manage user interactions. We also created various testing UI to help us visualize our methods and bugs. To keep the project more organized, we separated the 2D control layer from the 3D model representation, allowing us to build a cleaner and more modular architecture. For finer control over the visuals, we implemented mesh manipulation at the vertex level, which gave us more precision when adjusting shapes. Finally, we combined meshes where possible to optimize rendering and keep the performance smooth.</p>
 		
 		<h2>Results and Deliverables</h2>
 
